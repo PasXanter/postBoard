@@ -1,0 +1,20 @@
+main > section {
+    flex-direction: column;
+    display: inline-flex;
+    flex-grow: 1;
+    gap: 8px;
+}
+main > section > aside {
+    justify-content: space-between;
+    display: inline-flex;
+    align-items: center;
+}
+main > section > aside button {
+    border: 2px solid var(--baseColor);
+}
+main > section > ol > li {
+    align-content: flex-start;
+    flex-wrap: wrap;
+    display: none;
+    gap: 8px;
+}

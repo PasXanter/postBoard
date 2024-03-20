@@ -1,0 +1,57 @@
+body:has(main > dialog[open]) {
+    overflow: hidden;
+}
+
+main > dialog {
+    background-color: var(--additionalColor);
+    border: 2px solid var(--highlightColor);
+    transform: translate(-50%, -50%);
+    border-radius: 16px;
+    padding: 8px;
+    left: 50%;
+    top: 50%;
+}
+main > dialog::backdrop {
+    backdrop-filter: blur(5px);
+    background: var(--filterColor);
+}
+main > dialog > form {
+    flex-direction: column;
+    align-items: flex-end;
+    display: inline-flex;
+    gap: 16px;
+}
+main > dialog > form > button {
+    border: 2px solid var(--highlightColor);
+    padding: 2px;
+}
+main > dialog > form > button:last-of-type {
+    width: 100%;
+}
+main > dialog > form > ol {
+    flex-direction: column;
+    display: inline-flex;
+    list-style: none;
+    gap: 16px;
+}
+main > dialog > form > ol > li {
+    display: inline-flex;
+    gap: 8px;
+}
+main > dialog > form > ol > li::before {
+    content: "○ Step " counter(list-item);
+    counter-increment: list-item;
+    flex-direction: unset;
+}
+main > dialog > form > ol > li > input, main > dialog > form > ol > li > textarea {
+    border-bottom: 2px solid var(--highlightColor);
+    border-left: 2px solid var(--highlightColor);
+    text-overflow: ellipsis;
+    border-radius: 0 8px;
+}
+main > dialog > form > ol > li > input::placeholder, main > dialog > form > ol > li > textarea::placeholder {
+    color: var(--lightColor);
+}
+main > dialog > form > ol > li > textarea {
+    resize: none;
+}

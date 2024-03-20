@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+{% if(url_for(request.endpoint, **request.view_args) == "/pages/dynamic/posts") %}
+    {% extends "/templates/base.html" %}
+{% endif %}
+
+{% set title = "Posts" %}
+
+{% block links %}
+    <link rel = "stylesheet" href = "{{ url_for('static', filename = 'css/posts.css') }}">
+
+    <link rel = "stylesheet" href = "{{ url_for('static', filename = 'css/post.css') }}">
+    <link rel = "stylesheet" href = "{{ url_for('static', filename = 'css/dialog.css') }}">
+
+    <script type = "text/javascript" src = "{{ url_for('static', filename = 'js/sheetScroller.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+    <section>
+        <aside>
+            <button onclick = "document.querySelector('main > dialog').showModal()">➕ Write new post</button>
+
+            <nav>
+                <button value = "-1">Previous ◀</button>
+
+                <button value = "1">▶ Next</button>
+            </nav>
+        </aside>
+
+        <hr>
+
+        <ol>
+            {% set numberOfPosts = 20 %}
+
+            {% for offset in range(context.posts|length // numberOfPosts + (0 if(context.posts|length % numberOfPosts == 0) else 1)) %}
+                <li>
+                    {% for index in range(offset * numberOfPosts, offset * numberOfPosts + numberOfPosts if(offset * numberOfPosts + numberOfPosts < context.posts|length) else context.posts|length) %}
+                        {% include "/static/post.html" %}
+                    {% endfor %}
+                </li>
+            {% endfor %}
+        </ol>
+    </section>
+
+    {% include "/static/dialog.html" %}
+{% endblock %}

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<article>
+    <form action = "/api/posts/delete" method = "post">
+        <p>{{ context.posts[index].title }}</p>
+
+        <button name = "id" value = "{{ context.posts[index].id }}">
+            ❌
+        </button>
+    </form>
+
+    <br>
+    <p>{{ context.posts[index].description }}</p>
+    <details>
+        <summary>Details</summary>
+        
+        <p>{{ context.posts[index].text }}</p>
+    </details>
+    <br>
+    
+    <hr>
+    
+    <p>{{ context.posts[index].author }}</p>
+    <p>{{ context.posts[index].dateTime }}</p>
+</article>

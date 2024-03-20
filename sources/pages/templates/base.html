@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html lang = "en">
+    <head>  
+        <meta charset = "utf-8">
+        <meta http-equiv = "X-UA-Compatible" content = "IE = edge">
+        <meta name = "viewport" content = "width = device-width, initial-scale = 1">
+
+        <title>
+            {{ title }} | Post board
+        </title>
+
+        <link rel = "shortcut icon" href = "{{url_for('static', filename = 'images/favoriteIcon.png')}}">
+
+        <link rel = "stylesheet" href = "{{url_for('static', filename = 'css/base.css')}}">
+
+        <script type = "text/javascript" src = "{{url_for('static', filename = 'js/themeChanger.js')}}"></script>
+
+        {% block links %}{% endblock%}
+    </head>
+    <body>
+        <header>
+            <span>
+                <img src = "{{url_for('static', filename = 'images/favoriteIcon.png')}}">
+
+                <h2>Post board</h2>
+            </span>
+
+            <nav>
+                {% for path in context.pages %}
+                    {% if("/pages" + path == url_for(request.endpoint, **request.view_args)) %}
+                        {% set pageTitle = title %}
+                    {% else %}
+                        {% from path + ".html" import title as pageTitle with context %}
+                    {% endif %}
+
+                    <a href = "/pages/{{ path }}">{{ pageTitle }}</a>
+                    
+                    {% if(not loop.last) %}
+                        <hr>
+                    {% endif %}
+                {% endfor %}
+            </nav>
+
+            <section>
+                <select name = "theme" required>
+                    <option value = "" selected disabled hidden>
+                        Theme
+                    </option>
+                    <option value = "system">
+                        System
+                    </option>
+                    <option value = "light">
+                        Light
+                    </option>
+                    <option value = "dark">
+                        Dark
+                    </option>
+                </select>
+            </section>
+        </header>
+
+        <main>
+            {% block content %}{% endblock%}
+        </main>
+
+        <footer>
+            <p>
+                Created by PasXanter 👾 with love ❤️.
+            </p>
+        </footer>
+    </body>
+</html>

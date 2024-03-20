@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+
+{% if(url_for(request.endpoint, **request.view_args) == "/pages/dynamic/main") %}
+    {% extends "/templates/base.html" %}
+{% endif %}
+
+{% set title = "Main" %}
+
+{% block links %}
+    <link rel = "stylesheet" href = "{{ url_for('static', filename = 'css/main.css') }}">
+{% endblock %}
+
+{% block content %}
+    <h3>The "Post board" is a simple service for viewing and publishing posts, accessible to everyone!</h3>
+{% endblock %}

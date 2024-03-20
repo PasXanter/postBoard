@@ -1,0 +1,111 @@
+* {
+    color: var(--highlightColor);
+    font-family: "Calibri";
+    box-sizing: border-box;
+    text-decoration: none;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+html[data-themeColor = "light"] {/* highlightColor = min; lightColor = min + 2; intermediateColor = (baseColor - lightColor) / 2 + 2; baseColor = max - 3; additionalColor = max */
+    --highlightColor: #111;
+    --lightColor: #333;
+    --intermediateColor: #999;
+    --filterColor: #ffffffbf;
+    --baseColor: #bbb;
+    --additionalColor: #eee;
+}
+html[data-themeColor = "dark"] {/* highlightColor = max; lightColor = max - 3; intermediateColor = (baseColor - lightColor) / 2 - 2; baseColor = max; additionalColor = max + 2 */
+    --highlightColor: #eee;
+    --lightColor: #bbb;
+    --intermediateColor: #555;
+    --filterColor: #000000bf;
+    --baseColor: #111;
+    --additionalColor: #333;
+}
+
+a, select, button, details, input, textarea {
+    transition: background-color 0.5s linear(0 0%, 0.22 2.1%, 0.86 6.5%, 1.11 8.6%, 1.3 10.7%, 1.35 11.8%, 1.37 12.9%, 1.37 13.7%, 1.36 14.5%, 1.32 16.2%, 1.03 21.8%, 0.94 24%, 0.89 25.9%, 0.88 26.85%, 0.87 27.8%, 0.87 29.25%, 0.88 30.7%, 0.91 32.4%, 0.98 36.4%, 1.01 38.3%, 1.04 40.5%, 1.05 42.7%, 1.05 44.1%, 1.04 45.7%, 1 53.3%, 0.99 55.4%, 0.98 57.5%, 0.99 60.7%, 1 68.1%, 1.01 72.2%, 1 86.7%, 1 100%);
+    border-radius: 8px;
+    padding: 2px 4px;
+}
+
+a:hover, select:hover, button:hover, summary:hover, summary:hover ~ *, input:hover, textarea:hover {
+    background-color: var(--intermediateColor);
+    cursor: pointer;
+}
+
+hr {
+    border: 1px solid var(--baseColor);
+}
+
+html, body {
+    min-height: max(100vh, 512px);
+    height: max-content;
+    width: 100%;
+}
+body {
+    background-color: var(--baseColor);
+    justify-content: center;
+    flex-direction: column;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+header, main, footer {
+    background-color: var(--additionalColor);
+    min-width: calc(512px + 64px);  
+    width: calc(100% - 32px);
+    display: inline-flex;
+    max-width: 1024px;
+    padding: 8px;
+}
+header, footer {
+    justify-content: center;
+    align-items: center;
+    height: 64px;
+}
+
+header {
+    justify-content: space-between;
+    border-radius: 0 0 16px 16px;
+    gap: 16px;
+}
+header > span {
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
+    gap: 4px;
+}
+header > span > img {
+    image-rendering: crisp-edges;
+    height: 100%;
+}
+
+header > nav {
+    display: inline-flex;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+}
+
+header > section {
+    flex-shrink: 0;
+}
+header > section > select {
+    background-color: var(--baseColor);
+}
+header > section > select:focus {
+    border-radius: 8px 8px 0 0;
+}
+
+main {
+    border-radius: 16px;
+    flex-grow: 1;
+}
+
+footer {
+    border-radius: 16px 16px 0 0;
+}

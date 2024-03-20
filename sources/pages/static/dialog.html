@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<dialog>
+    <form method = "dialog">
+        <button formnovalidate>
+            ❌
+        </button>
+
+        <ol>
+            <li>
+                <input name = "title" maxlength = "32" size = "32" placeholder = "Place the title of the post here" required autofocus>
+            </li>
+            <li>
+                <textarea name = "description" maxlength = "128 " cols = "32" rows = "4" placeholder = "Come up with a short description"></textarea>
+            </li>
+            <li>
+                <textarea name = "text" cols = "64" rows = "16" placeholder = "Write the text of the post" required></textarea>
+            </li>
+            <li>
+                <input name = "author" maxlength = "16" size = "16" placeholder = "And sign up">
+            </li>
+        </ol>
+
+        <button formaction = "/api/posts/publish" formmethod = "post">
+            Publish
+        </button>
+    </form>
+</dialog>
